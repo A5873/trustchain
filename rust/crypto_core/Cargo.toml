@@ -1,0 +1,56 @@
+[package]
+name = "trustchain-crypto-core"
+version = "0.1.0"
+edition = "2021"
+authors = ["TrustChain Team"]
+description = "High-performance cryptographic verification engine for TrustChain"
+repository = "https://github.com/trustchain/trustchain"
+license = "Apache-2.0"
+readme = "README.md"
+
+[lib]
+name = "trustchain_crypto"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Cryptography
+ring = "0.17.0"
+ed25519-dalek = "2.0.0"
+x25519-dalek = "2.0.0"
+merkle_light = "0.4.0"
+blake3 = "1.4.0"
+sha2 = "0.10.6"
+
+# Foreign Function Interface
+pyo3 = { version = "0.18.3", features = ["extension-module"], optional = true }
+ffi-support = "0.4.0"
+
+# Serialization
+serde = { version = "1.0.160", features = ["derive"] }
+serde_json = "1.0.96"
+
+# Error handling
+thiserror = "1.0.40"
+anyhow = "1.0.70"
+
+# Logging
+log = "0.4.17"
+env_logger = "0.10.0"
+
+[dev-dependencies]
+criterion = "0.4.0"
+tempfile = "3.5.0"
+proptest = "1.2.0"
+
+[features]
+default = []
+python = ["pyo3"]
+wasm = ["getrandom/js"]
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+panic = "abort"
+strip = true
+
