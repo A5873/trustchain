@@ -14,6 +14,31 @@
 
 # TrustChain: Secure Open Source Supply Chain Infrastructure
 
+[![CI Status](https://github.com/A5873/trustchain/workflows/go/badge.svg)](https://github.com/A5873/trustchain/actions)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+
+## Project Status
+
+TrustChain is currently in early development (Phase 1). We're focusing on building the core cryptographic functionality.
+
+**Completed:**
+- ✅ Key generation and management
+- ✅ Digital signature creation and verification
+- ✅ Hash functions and verification
+- ✅ Verification policies and trust chains
+- ✅ Development environment setup
+
+**In Progress:**
+- 🚧 Cryptographic primitives FFI for Go integration
+- 🚧 Basic CLI for crypto operations
+
+**Coming Soon:**
+- Distributed verification protocol
+- Package manager integrations
+- CI/CD integrations
+
+For more details on our roadmap, see the [Strategy Document](docs/STRATEGY.md).
+
 ## Vision
 
 TrustChain is a lightweight, distributed verification system for open source software components that establishes cryptographic proof of code integrity throughout the development lifecycle. The system combines Git-compatible cryptographic signing with distributed attestation nodes running on a peer-to-peer network to create verifiable chains of custody for code—from individual contributor commits to production deployments.
@@ -85,39 +110,42 @@ TrustChain employs a hybrid architecture designed for performance, security, and
 
 ### Prerequisites
 
-- Go 1.20+
-- Rust 1.65+
+- Go 1.24+
+- Rust 1.67+
 - Python 3.10+
 - OpenSSL 3.0+
+- Docker (for containerized development)
 
 ### Installation
 
-#### From Source
+> **Note:** TrustChain is in active development and not yet ready for production use.
+> The installation instructions below will be available once we reach alpha release.
+
+#### Development Setup
 
 ```bash
 # Clone the repository
 git clone https://github.com/A5873/trustchain.git
 cd trustchain
 
+# Set up development environment
+make dev-deps
+
 # Build all components
 make build
 
-# Install the CLI tool
-make install
+# Run tests
+make test
 ```
 
-#### Using Package Managers
+#### Using Dev Container
 
-```bash
-# For macOS
-brew install trustchain
+We provide a development container configuration for Visual Studio Code and GitHub Codespaces:
 
-# For Ubuntu/Debian
-apt install trustchain
-
-# Using Python (for interface layer only)
-pip install trustchain
-```
+1. Install [VS Code](https://code.visualstudio.com/) and the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+2. Clone the repository and open it in VS Code
+3. When prompted, click "Reopen in Container"
+4. The container will set up all required dependencies automatically
 
 ## Basic Usage
 
@@ -189,11 +217,34 @@ make test-python
 make docs
 ```
 
+## Documentation
+
+For more detailed information about TrustChain, please refer to:
+
+- [Strategy Document](docs/STRATEGY.md) - Project roadmap and architecture
+- [Contributing Guidelines](CONTRIBUTING.md) - How to contribute to the project
+- [Security Policy](.github/SECURITY.md) - Security considerations and reporting
+- API Documentation - *(Coming Soon)*
+- Integration Guides - *(Coming Soon)*
+
+## Security
+
+Security is our top priority. For information about our security policy and how to report security issues, please see our [Security Policy](.github/SECURITY.md).
+
+### Reporting a Vulnerability
+
+We take all security vulnerabilities seriously. Please report them via email to security@trustchain.example.org rather than creating public GitHub issues.
+
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
+We welcome contributions from the community! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to get started, coding standards, and the pull request process.
+
+## Authors
+
+- **Alex Ngugi** - *Initial work* - [A5873](https://github.com/A5873)
+
+See also the list of [contributors](https://github.com/A5873/trustchain/contributors) who have participated in this project.
 
 ## License
 
 TrustChain is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
