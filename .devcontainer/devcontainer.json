@@ -1,0 +1,80 @@
+{
+  "name": "TrustChain Development",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers-contrib/features/protoc:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "go.toolsManagement.checkForUpdates": "local",
+        "go.useLanguageServer": true,
+        "go.gopath": "/go",
+        "go.goroot": "/usr/local/go",
+        "go.lintTool": "golangci-lint",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black",
+        "python.linting.mypyEnabled": true,
+        "rust-analyzer.checkOnSave.command": "clippy",
+        "rust-analyzer.checkOnSave.allTargets": true,
+        "editor.formatOnSave": true,
+        "[rust]": {
+          "editor.defaultFormatter": "rust-lang.rust-analyzer"
+        },
+        "[go]": {
+          "editor.defaultFormatter": "golang.go"
+        },
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter"
+        }
+      },
+      "extensions": [
+        "golang.go",
+        "rust-lang.rust-analyzer",
+        "tamasfe.even-better-toml",
+        "serayuzgur.crates",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "ms-python.mypy-type-checker",
+        "esbenp.prettier-vscode",
+        "yzhang.markdown-all-in-one",
+        "davidanson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker",
+        "redhat.vscode-yaml",
+        "github.vscode-github-actions",
+        "ryanluker.vscode-coverage-gutters",
+        "github.copilot",
+        "github.vscode-pull-request-github",
+        "ms-azuretools.vscode-docker",
+        "gruntfuggly.todo-tree"
+      ]
+    }
+  },
+  "forwardPorts": [
+    8080,  // HTTP API
+    9000   // Metrics
+  ],
+  "containerEnv": {
+    "RUST_BACKTRACE": "1"
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+  ],
+  "remoteUser": "vscode",
+  "containerUser": "vscode",
+  "postCreateCommand": "make dev-deps",
+  "waitFor": "onCreateCommand",
+  "updateContentCommand": "make update-deps",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/.cargo/bin:/go/bin"
+  }
+}
+

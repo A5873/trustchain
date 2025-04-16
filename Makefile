@@ -93,6 +93,10 @@ docs: docs-api docs-guide docs-book
 .PHONY: dev-deps
 dev-deps: go-deps rust-deps python-deps tool-deps
 
+# Update all dependencies
+.PHONY: update-deps
+update-deps: update-go-deps update-rust-deps update-python-deps
+
 # Run integration tests
 .PHONY: integration-test
 integration-test: build
