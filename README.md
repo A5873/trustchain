@@ -44,21 +44,21 @@ TrustChain employs a hybrid architecture designed for performance, security, and
 └───────────────────────┬─────────────────────────┘
                         │
 ┌───────────────────────▼─────────────────────────┐
-│              Python Interface Layer              │
+│              Python Interface Layer             │
 │    API Wrappers | Integrations | Dashboards     │
 └───────────────────────┬─────────────────────────┘
                         │
 ┌───────────────────────▼─────────────────────────┐
 │              Core Services (Go)                 │
-│ Orchestration | Trust Zones | Policy Engine    │
-└─┬─────────────────────────────────────────────┬─┘
-  │                                             │
-┌─▼───────────────────────┐    ┌───────────────▼──┐
-│  P2P Network (Go)       │    │ Crypto Core (Rust)│
-│ Node Discovery          │    │ Verification     │
-│ Consensus Protocol      │    │ Signing          │
-│ Attestation Distribution│    │ Hash Functions   │
-└─────────────────────────┘    └──────────────────┘
+│ Orchestration | Trust Zones | Policy Engine     │
+└─┬────────────────────────────────────────────┬──┘
+  │                                            │
+┌─▼───────────────────────┐   ┌────────────────▼─┐
+│  P2P Network (Go)       │   │ Crypto Core(Rust)│
+│ Node Discovery          │   │ Verification     │
+│ Consensus Protocol      │   │ Signing          │
+│ Attestation Distribution│   │ Hash Functions   │
+└─────────────────────────┘   └──────────────────┘
 ```
 
 ### Component Structure
@@ -96,7 +96,7 @@ TrustChain employs a hybrid architecture designed for performance, security, and
 
 ```bash
 # Clone the repository
-git clone https://github.com/trustchain/trustchain.git
+git clone https://github.com/A5873/trustchain.git
 cd trustchain
 
 # Build all components
